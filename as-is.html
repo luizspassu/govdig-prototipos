@@ -350,7 +350,7 @@ const EQ0 = [
  {p:'Registro Demo 039',n:'Registro Demo 050',f:'Analista',a:true,in:'',dt:'01/03/2023'},
  {p:'Registro Demo 040',n:'Registro Demo 050',f:'Analista',a:false,in:'Alteração Centro de Custo',dt:'01/02/2022'}
 ];
-/* metadados das equipes listadas no print da Consulta de Registro Demo 074(ativos, total, criação, 1ª e última alocação) */
+/* metadados das equipes listadas no print da Consulta de Equipe (ativos, total, criação, 1ª e última alocação) */
 const EQMETA = {
  'Registro Demo 028':{at:0,tot:7,ce:'01/2024',pa:'01/2024',ua:'07/2024'},
  'Registro Demo 029':{at:0,tot:8,ce:'01/2024',pa:'01/2024',ua:'07/2024'},
@@ -369,14 +369,14 @@ const EQMETA = {
 
 /* alocações: chave produto|colaborador|ano|mês(1-12) = % */
 const AL0 = {
- 'Registro Demo 047|Registro Demo 051|2025|1':30,
- 'Registro Demo 047|Registro Demo 054|2025|1':30,'Registro Demo 047|Registro Demo 054|2025|2':50,
- 'Registro Demo 047|Registro Demo 055|2025|2':20,'Registro Demo 047|Registro Demo 055|2025|3':20,
- 'Registro Demo 048|Registro Demo 055|2025|4':40,
- 'Registro Demo 045|Registro Demo 052|2025|11':50,'Registro Demo 045|Registro Demo 053|2025|6':40,
- 'HUB|Registro Demo 050|2022|10':50,'Registro Demo 038|Registro Demo 050|2022|10':50,  // cenário: rateio cortado no print
- 'HUB|Registro Demo 050|2022|11':50,'Registro Demo 038|Registro Demo 050|2022|11':50,
- 'HUB|Registro Demo 050|2022|12':50,'Registro Demo 038|Registro Demo 050|2022|12':50
+ 'Teste - Gabriel|ANDERSON OASKI GRAMPINHA|2025|1':30,
+ 'Teste - Gabriel|DIEGO BORGES RIBEIRO|2025|1':30,'Teste - Gabriel|DIEGO BORGES RIBEIRO|2025|2':50,
+ 'Teste - Gabriel|GABRIEL CORREA ROSA|2025|2':20,'Teste - Gabriel|GABRIEL CORREA ROSA|2025|3':20,
+ 'Teste Dados 2|GABRIEL CORREA ROSA|2025|4':40,
+ 'Produto Teste 30-09-25_3|COLABORADOR 1|2025|11':50,'Produto Teste 30-09-25_3|COLABORADOR 2|2025|6':40,
+ 'HUB|ADRIANA UCHOAS DE MELO MARINHO|2022|10':50,'DELEGADO|ADRIANA UCHOAS DE MELO MARINHO|2022|10':50,  // cenário: rateio cortado no print
+ 'HUB|ADRIANA UCHOAS DE MELO MARINHO|2022|11':50,'DELEGADO|ADRIANA UCHOAS DE MELO MARINHO|2022|11':50,
+ 'HUB|ADRIANA UCHOAS DE MELO MARINHO|2022|12':50,'DELEGADO|ADRIANA UCHOAS DE MELO MARINHO|2022|12':50
 };
 
 const CS0 = [
@@ -410,11 +410,11 @@ const EV0 = [
  {id:'teste',p:'Registro Demo 045',m:7,a:'2025',ds:'teste, teste, teste',lk:'',cat:'',por:'admin.segundo'},
  {id:'teste 45',p:'Registro Demo 045',m:7,a:'2025',ds:'teste, teste fnkjbfjsbhd gabriel correa',lk:'',cat:'',por:'admin.segundo'},
  {id:'teste 2',p:'Registro Demo 045',m:4,a:'2025',ds:'teste, gabriel correa rosa',lk:'',cat:'',por:'admin.segundo'},
- {id:'Registro Demo 034 - ROADMAP 2026 T4',p:'Registro Demo 034',m:12,a:'2026',ds:'Descrição fictícia para teste do protótipo.',lk:'',cat:'',por:'gerente.demo'},
- {id:'Registro Demo 035 - Roadmap 2026 T4',p:'Registro Demo 035',m:10,a:'2026',ds:'Descrição fictícia para teste do protótipo.',lk:'',cat:'',por:'gerente.demo'}
+ {id:'Administra Web (Evolução) - ROADMAP 2026 T4',p:'Registro Demo 034',m:12,a:'2026',ds:'Descrição fictícia para teste do protótipo.',lk:'',cat:'',por:'gerente.demo'},
+ {id:'Administra Web (Migração) - Roadmap 2026 T4',p:'Registro Demo 035',m:10,a:'2026',ds:'Descrição fictícia para teste do protótipo.',lk:'',cat:'',por:'gerente.demo'}
 ];
 const EV_CATS = ['Entrega de funcionalidade','Melhoria','Pesquisa','Roadmap']; // cenário
-const TRL0 = {'Registro Demo 045|2025':{'2º':'1','3º':'4'},'Registro Demo 044|2025':{'2º':'5'},'Registro Demo 037|2025':{'1º':'1'}};
+const TRL0 = {'Produto Teste 30-09-25_3|2025':{'2º':'1','3º':'4'},'Produto Teste 0707|2025':{'2º':'5'},'AIDA|2025':{'1º':'1'}};
 const TRL_DESC = ['Princípios básicos observados e relatados','Formulação do conceito tecnológico ou da aplicação','Prova de conceito analítica e experimental','Validação de componentes em ambiente de laboratório','Validação de componentes em ambiente relevante','Demonstração do protótipo em ambiente relevante','Demonstração do protótipo em ambiente operacional','Sistema completo testado e qualificado','Sistema comprovado em ambiente operacional'];
 
 /* Auditoria */
@@ -726,7 +726,7 @@ T.pf = ()=>{
      +R('TRL Atual',`<div style="width:160px">${dd('ui.pf.f.trlA',['1','2','3','4','5','6','7','8','9'],f.trlA)}</div>`)
      +R('TRL Previsto',`<div style="width:160px">${dd('ui.pf.f.trlP',['1','2','3','4','5','6','7','8','9'],f.trlP)}</div>`);
   } else if(u.step==='sol'){
-    corpo=R('Solução Registro Demo 002',`<div style="width:584px">${ta('ui.pf.f.sol',f.sol,'Descreva a solução',200)}</div>`,17);
+    corpo=R('Solução Spassu',`<div style="width:584px">${ta('ui.pf.f.sol',f.sol,'Descreva a solução',200)}</div>`,17);
   } else {
     const k=u.step;
     corpo=[0,1,2,3,4].map(i=>R('Opção '+(i+1),`<div style="width:420px">${tx(`ui.pf.f.${k}.${i}`,f[k][i],'')}</div>`,i?8:17)).join('')
@@ -760,7 +760,7 @@ T.pd = ()=>{
       const s=u[sk];
       if(s==='ig') c=R('Nome do Produto *',p.n,14)+R('Contrato *',p.c)+R('Subproduto',p.sub)+R('Status *',p.st)+R('Data Início *',p.ini)+R('Data Conclusão *',p.fim)+R('Categoria *',p.cat)+R('Link Documentação',p.lk);
       else if(s==='det') c=`<div class="row" style="margin-top:14px;align-items:flex-start;min-height:110px"><div class="lb" style="width:131px">Descrição</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.4">${esc(p.d)}</div></div>`+R('Validação',p.val||(p.e?'Elegível':''))+R('Auditoria do Cadastro',p.aud)+R('TRL Atual',p.trlA)+R('TRL Previsto',p.trlP);
-      else if(s==='sol') c=`<div class="row" style="margin-top:14px;align-items:flex-start"><div class="lb" style="width:131px">Solução Registro Demo 002</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.45">${esc(p.sol)}</div></div>`;
+      else if(s==='sol') c=`<div class="row" style="margin-top:14px;align-items:flex-start"><div class="lb" style="width:131px">Solução Spassu</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.45">${esc(p.sol)}</div></div>`;
       else {const arr=p[s],dt=p[s+'D']||'';c=arr.map((v,i)=>`<div class="row" style="margin-top:${i?0:10}px;min-height:27px"><div class="lb" style="width:131px">Opção ${i+1}</div><div class="vv" style="padding-left:12px">${esc(v)}</div></div>`).join('')+`<div class="row" style="margin-top:30px"><div class="lb" style="width:131px;font-weight:500">Detalhamento</div><div class="vv" style="padding-left:12px">${esc(dt)}</div></div>`;}
     } else {
       if(u[sk]==='ig') c=R('Elegível Lei do Bem?',p.el.lb,14)+R('Tipo de Inovação',p.el.tipo)+R('Categoria Predominante',p.el.catp)+R('Natureza Predominante',p.el.nat)+R('Localização',p.el.loc)+R('Aquisição de Tecnologia',p.el.aq);
@@ -901,7 +901,7 @@ T.ec = ()=>{
   const fil=filtros([{x:7,w:361,l:'Contrato',h:dd('ui.ec.c',cts,u.c,'')},{x:383,w:362,l:'Produto',h:u.c?dd('ui.ec.p',prodsDe(u.c).map(p=>p.n),u.p,''):ddVazio()}],!!(u.c||u.p));
   return shell({sub:'Consulta de Equipe'},fil+`<div class="card" style="top:100px;bottom:2px"><span class="ctit" style="position:absolute;left:13px;top:9px">Equipes</span>
    <button class="b ${relOn?'lar':'laroff'}" style="position:absolute;left:673px;top:6px;width:74px;height:20px" data-act="${relOn?'rel-equipe':'desab:rel-equipe'}">Gerar Relatório</button>
-   <button class="b lar" style="position:absolute;left:755px;top:6px;width:113px;height:20px" data-go="ef">Nova Registro Demo 074<span class="bplus" style="margin-left:14px">+</span></button>
+   <button class="b lar" style="position:absolute;left:755px;top:6px;width:113px;height:20px" data-go="ef">Nova Equipe <span class="bplus" style="margin-left:14px">+</span></button>
    ${tabela({cols,rows,top:33,sk:'ec',empty:'Nenhuma Equipe Encontrada!'})}</div>`);
 };
 
@@ -943,7 +943,7 @@ T.ef = ()=>{
 /* ---------------- Consulta de Colaborador ---------------- */
 T.col = ()=>{
   const u=U('col');
-  const todos=[...new Set(D().EQ.map(m=>m.n).concat(D().COLABS.map(c=>c.n)))].filter(n=>!/^Registro Demo 056\d+$/.test(n)||D().EQ.some(m=>m.n===n&&m.p.startsWith('Produto Teste'))).sort(cmp);
+  const todos=[...new Set(D().EQ.map(m=>m.n).concat(D().COLABS.map(c=>c.n)))].filter(n=>!/^COLABORADOR \d+$/.test(n)||D().EQ.some(m=>m.n===n&&m.p.startsWith('Produto Teste'))).sort(cmp);
   const fil=`<div class="card fil" style="height:90px"><span class="ctit">Filtros</span><div class="f" style="left:8px;width:401px"><span class="lbl">Colaborador</span>${dd('ui.col.n',todos,u.n,'')}</div><button class="b ${u.n?'nav':'cin'} lf" style="left:426px;width:125px" data-act="${u.n?'limpar':''}">Limpar Filtro</button></div>`;
   let esq=`<div style="text-align:center;font-style:italic;color:#9d9d9d;font-size:10px;margin-top:100px">Nenhum Colaborador Selecionado!</div>`;
   let dir=`<div style="text-align:center;font-style:italic;color:#9d9d9d;font-size:10px;margin-top:100px">Nenhum Colaborador Selecionado</div>`;
@@ -1085,7 +1085,7 @@ T.pdc = ()=>{
 /* ---------------- P&D: Projeto (Projeto P&D / Relatório Trimestral / Agrupamento) ---------------- */
 T.pdp = ()=>{
   const u=U('pdp'); const p=u.id?D().PD.find(x=>x.n===u.id):null; u.tab=u.tab||'p';
-  const novo=!p; const subs={p:'Registro Demo 066',t:'Registro Demo 066 - Trimestral',a:'Registro Demo 066 - Agrupamento'};
+  const novo=!p; const subs={p:'Registro Demo 066',t:'Novo Projeto P&D - Trimestral',a:'Novo Projeto P&D - Agrupamento'};
   const tabs=`<div class="tabs" style="left:-1px;top:5px">${[['p','Projeto P&D'],['t','Relatório Trimestral'],['a','Agrupamento']].map(([k,t])=>`<div class="tab ${u.tab===k?'on':''} ${novo&&k!=='p'?'dis':''}" style="width:140px" data-act="${novo&&k!=='p'?'desab:pdtab':'pdtab:'+k}">${t}</div>`).join('')}</div>`;
   const ctx=`<div class="ctx" style="left:-1px;right:3px;top:33px;height:28px"><span style="position:absolute;left:34px">Projeto: <b>${esc(p?p.n:'')}</b></span><span style="position:absolute;left:683px">Data de Inclusão: <b>${esc(p?p.inc:(u.inc||(u.inc=agora())))}</b></span></div>`;
   const R=(lb,h,y)=>`<div style="position:absolute;left:0;top:${y}px;display:flex;align-items:center;height:19px"><div style="width:139px;text-align:right;padding-right:6px;font-size:8.8px;font-weight:600;color:#2a2a2a">${lb}</div>${h}</div>`;
@@ -1491,7 +1491,7 @@ const A = {
  'ausub':k=>{U('pd').auSub=k;render();},
  /* exportação */
  'pdf-download':()=>{const p=prod(U('pd').id);const op=(a,dt)=>a.map((v,i)=>['Opção '+(i+1)+':',v]).concat([['Detalhamento:',dt||'']]);
-   const b=gerarPDF(p.n,[['Informações Gerais',[['Nome do Produto:',p.n],['Contrato:',p.c],['Subproduto',p.sub],['Status:',p.st],['Data Início:',p.ini],['Data Conclusão:',p.fim],['Categoria:',p.cat],['Link Documentação:',p.lk]]],['Detalhamento',[['Descrição:',p.d],['Validação:',p.val],['Auditoria do Cadastro:',p.aud],['TRL Atual:',p.trlA],['TRL Previsto:',p.trlP]]],['Solução',[['Solução Registro Demo 002:',p.sol]]],['Benefícios',op(p.ben,p.benD)],['Metodologia',op(p.met,p.metD)],['Tecnologia',op(p.tec,p.tecD)]]);
+   const b=gerarPDF(p.n,[['Informações Gerais',[['Nome do Produto:',p.n],['Contrato:',p.c],['Subproduto',p.sub],['Status:',p.st],['Data Início:',p.ini],['Data Conclusão:',p.fim],['Categoria:',p.cat],['Link Documentação:',p.lk]]],['Detalhamento',[['Descrição:',p.d],['Validação:',p.val],['Auditoria do Cadastro:',p.aud],['TRL Atual:',p.trlA],['TRL Previsto:',p.trlP]]],['Solução',[['Solução Spassu:',p.sol]]],['Benefícios',op(p.ben,p.benD)],['Metodologia',op(p.met,p.metD)],['Tecnologia',op(p.tec,p.tecD)]]);
    baixar(p.n.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\-]+/g,'_').replace(/^_|_$/g,'')+'.pdf',new Blob([b],{type:'application/pdf'}));toast('Relatório PDF gerado.');render();},
  'pdf-email':()=>{const u=U('pdf');u.email=!u.email;render();},
  'pdf-enviar':()=>{const u=U('pdf');const ems=(u.para||'').split(';').map(s=>s.trim()).filter(Boolean);if(!ems.length||ems.some(e=>!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))){toast('Informe e-mails válidos, separados por ";".','err');render();return;}toast(`Relatório enviado para ${ems.length} destinatário(s).`);u.para='';u.email=false;render();},
