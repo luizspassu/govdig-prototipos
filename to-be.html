@@ -772,7 +772,7 @@ T.pf = ()=>{
   let corpo='';
   const R=(lb,h,mt)=>`<div class="row" style="margin-top:${mt==null?11:mt}px"><div class="lb">${lb}</div>${h}</div>`;
   if(u.step==='ig'){
-    corpo=R('Registro Demo 096 ou Serviço *',`<div style="width:584px">${tx('ui.pf.f.n',f.n,'Sigla ou Registro Demo 096/Serviço (não pode conter caracter especial, como virgula)',u.id?'':'')}</div>`,17)
+    corpo=R('Nome do Produto ou Serviço *',`<div style="width:584px">${tx('ui.pf.f.n',f.n,'Sigla ou Nome do Produto/Serviço (não pode conter caracter especial, como virgula)',u.id?'':'')}</div>`,17)
      +R('Contrato *',`<div style="width:279px">${dd('ui.pf.f.c',contratosVis(),f.c)}</div>`)
      +R('Subproduto',`<div style="width:279px">${dd('ui.pf.f.sub',['Não','Sim'],f.sub,null)}</div>`)
      +R('Status *',`<div style="width:279px">${dd('ui.pf.f.st',master()?STATUS_PROD:STATUS_PROD.filter(s=>s!=='Inativado'),f.st)}</div>`)
@@ -817,7 +817,7 @@ T.pd = ()=>{
     let c='';
     if(u.tab==='prod'){
       const s=u[sk];
-      if(s==='ig') c=R('Registro Demo 096 *',p.n,14)+R('Contrato *',p.c)+R('Subproduto',p.sub)+R('Status *',p.st)+R('Data Início *',p.ini)+R('Data Conclusão *',p.fim)+R('Categoria *',p.cat)+R('Link Documentação',p.lk);
+      if(s==='ig') c=R('Nome do Produto *',p.n,14)+R('Contrato *',p.c)+R('Subproduto',p.sub)+R('Status *',p.st)+R('Data Início *',p.ini)+R('Data Conclusão *',p.fim)+R('Categoria *',p.cat)+R('Link Documentação',p.lk);
       else if(s==='det') c=`<div class="row" style="margin-top:14px;align-items:flex-start;min-height:110px"><div class="lb" style="width:131px">Descrição</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.4">${esc(p.d)}</div></div>`+R('Validação',p.val||(p.e?'Elegível':''))+R('Auditoria do Cadastro',p.aud)+R('TRL Atual',p.trlA)+R('TRL Previsto',p.trlP);
       else if(s==='sol') c=`<div class="row" style="margin-top:14px;align-items:flex-start"><div class="lb" style="width:131px">Solução Registro Demo 002</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.45">${esc(p.sol)}</div></div>`;
       else {const arr=p[s],dt=p[s+'D']||'';c=arr.map((v,i)=>`<div class="row" style="margin-top:${i?0:10}px;min-height:27px"><div class="lb" style="width:131px">Opção ${i+1}</div><div class="vv" style="padding-left:12px">${esc(v)}</div></div>`).join('')+`<div class="row" style="margin-top:30px"><div class="lb" style="width:131px;font-weight:500">Detalhamento</div><div class="vv" style="padding-left:12px">${esc(dt)}</div></div>`;}
@@ -926,7 +926,7 @@ T.pdf = ()=>{
   const prev=`<div style="position:relative;padding-top:6px">
     <div style="position:absolute;right:14px;top:6px;display:flex;align-items:center;gap:3px">${LOGO_COR(20)}<span style="font-family:Lato,sans-serif;font-size:15px;color:#FB4516">spassu</span></div>
     <div style="font-size:14px;color:#111;margin:9px 0 9px 37px">Informações Gerais</div>
-    ${L('Registro Demo 096:',p.n)}${L('Contrato:',p.c)}${L('Subproduto',p.sub)}${L('Status:',p.st)}${L('Data Início:',p.ini)}${L('Data Conclusão:',p.fim)}${L('Categoria:',p.cat)}${L('Link Documentação:',p.lk)}
+    ${L('Nome do Produto:',p.n)}${L('Contrato:',p.c)}${L('Subproduto',p.sub)}${L('Status:',p.st)}${L('Data Início:',p.ini)}${L('Data Conclusão:',p.fim)}${L('Categoria:',p.cat)}${L('Link Documentação:',p.lk)}
     <div style="height:1px;background:#ddd;margin:10px 18px 0"></div>
     <div style="font-size:14px;color:#111;margin:18px 0 8px 37px">Detalhamento</div>${L('Descrição:',p.d)}${L('Validação:',p.val)}${L('Auditoria do Cadastro:',p.aud)}${L('TRL Atual:',p.trlA)}${L('TRL Previsto:',p.trlP)}
     <div style="height:1px;background:#ddd;margin:10px 18px 0"></div>
@@ -1425,7 +1425,7 @@ function modalHTML(){
      <button class="b nav" style="position:absolute;left:154px;top:160px;width:104px;height:25px;font-size:12.5px;font-weight:800" data-act="senha-alterar">Alterar</button></div>`;
   else if(m.t==='lote'){
     const prodL=m.k==='prod';
-    const cols=prodL?['Registro Demo 096 ou Serviço','Contrato','Status','Inicio','Conclusão','Categoria']:['Contrato','Produto/Serviço','Colaborador','Função'];
+    const cols=prodL?['Nome do Produto ou Serviço','Contrato','Status','Inicio','Conclusão','Categoria']:['Contrato','Produto/Serviço','Colaborador','Função'];
     h=`<div class="mod" style="width:640px;height:330px;padding:0" data-nota="Pop-up descrito no texto (Cadastro em lote) sem print no documento. Layout derivado: dashboard à esquerda e pré-visualização à direita, como o texto descreve.">${X}<h3 style="margin-top:12px">Cadastro em lote</h3>
      <div style="position:absolute;left:16px;top:40px;width:250px;bottom:52px;border:1px solid #ddd;border-radius:3px;background:#FAFAFA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
        <svg viewBox="0 0 60 40" style="width:90px;height:60px"><rect x="4" y="22" width="8" height="14" fill="#F2C811"/><rect x="16" y="14" width="8" height="22" fill="#F2C811" opacity=".8"/><rect x="28" y="6" width="8" height="30" fill="#F2C811" opacity=".6"/><rect x="40" y="18" width="8" height="18" fill="#F2C811" opacity=".9"/></svg>
@@ -1550,7 +1550,7 @@ const A = {
  'ausub':k=>{U('pd').auSub=k;render();},
  /* exportação */
  'pdf-download':()=>{const p=prod(U('pd').id);const op=(a,dt)=>a.map((v,i)=>['Opção '+(i+1)+':',v]).concat([['Detalhamento:',dt||'']]);
-   const b=gerarPDF(p.n,[['Informações Gerais',[['Registro Demo 096:',p.n],['Contrato:',p.c],['Subproduto',p.sub],['Status:',p.st],['Data Início:',p.ini],['Data Conclusão:',p.fim],['Categoria:',p.cat],['Link Documentação:',p.lk]]],['Detalhamento',[['Descrição:',p.d],['Validação:',p.val],['Auditoria do Cadastro:',p.aud],['TRL Atual:',p.trlA],['TRL Previsto:',p.trlP]]],['Solução',[['Solução Registro Demo 002:',p.sol]]],['Benefícios',op(p.ben,p.benD)],['Metodologia',op(p.met,p.metD)],['Tecnologia',op(p.tec,p.tecD)]]);
+   const b=gerarPDF(p.n,[['Informações Gerais',[['Nome do Produto:',p.n],['Contrato:',p.c],['Subproduto',p.sub],['Status:',p.st],['Data Início:',p.ini],['Data Conclusão:',p.fim],['Categoria:',p.cat],['Link Documentação:',p.lk]]],['Detalhamento',[['Descrição:',p.d],['Validação:',p.val],['Auditoria do Cadastro:',p.aud],['TRL Atual:',p.trlA],['TRL Previsto:',p.trlP]]],['Solução',[['Solução Registro Demo 002:',p.sol]]],['Benefícios',op(p.ben,p.benD)],['Metodologia',op(p.met,p.metD)],['Tecnologia',op(p.tec,p.tecD)]]);
    baixar(p.n.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\-]+/g,'_').replace(/^_|_$/g,'')+'.pdf',new Blob([b],{type:'application/pdf'}));toast('Relatório PDF gerado.');render();},
  'pdf-email':()=>{const u=U('pdf');u.email=!u.email;render();},
  'pdf-enviar':()=>{const u=U('pdf');const ems=(u.para||'').split(';').map(s=>s.trim()).filter(Boolean);if(!ems.length||ems.some(e=>!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))){toast('Informe e-mails válidos, separados por ";".','err');render();return;}toast(`Relatório enviado para ${ems.length} destinatário(s).`);u.para='';u.email=false;render();},
@@ -1569,7 +1569,7 @@ const A = {
  'm-fora':()=>{MODAL={t:'fora'};render();},
  'fora-ok':()=>{const n=MODAL.n;if(!n){toast('Selecione um colaborador.','err');render();return;}U('ef').colab=n;MODAL=null;render();},
  'm-lote-prod':()=>{MODAL={t:'lote',k:'prod'};render();},'m-lote-eq':()=>{MODAL={t:'lote',k:'eq'};render();},
- 'lote-modelo':k=>{baixar(k==='prod'?'modelo_cadastro_produtos.csv':'modelo_cadastro_colaboradores.csv',k==='prod'?csv([['Registro Demo 096 ou Serviço','Contrato','Status','Inicio','Conclusão','Categoria'],['Exemplo de Produto','Dados','Em andamento',HOJE,'31/12/2026','Desenvolvimento']]):csv([['Contrato','Produto/Serviço','Colaborador','Função'],['Dados','Registro Demo 047','Registro Demo 055','Analista']]));},
+ 'lote-modelo':k=>{baixar(k==='prod'?'modelo_cadastro_produtos.csv':'modelo_cadastro_colaboradores.csv',k==='prod'?csv([['Nome do Produto ou Serviço','Contrato','Status','Inicio','Conclusão','Categoria'],['Exemplo de Produto','Dados','Em andamento',HOJE,'31/12/2026','Desenvolvimento']]):csv([['Contrato','Produto/Serviço','Colaborador','Função'],['Dados','Registro Demo 047','Registro Demo 055','Analista']]));},
  'lote-salvar':()=>{const m=MODAL;let n=0;
    if(m.k==='prod'){m.rows.forEach(r=>{const f=Object.assign(novoForm(),{n:(r[0]||'').trim(),c:r[1],st:r[2],ini:r[3],fim:r[4],cat:r[5],ben:['x','','','',''],met:['x','','','',''],tec:['x','','','','']});if(!obrigOk(f)){D().P.push(Object.assign({id:'p'+(++D().seq),e:false,el:{lb:'Não',tipo:'',catp:'',nat:'',loc:'',aq:''},val:'',aud:'',custo:'R$ 1.000,00',cp:HOJE.slice(3)},f,{ben:['','','','',''],met:['','','','',''],tec:['','','','','']}));log('Produtos',f.c,f.n,'Cadastro em lote');n++;}});}
    else{m.rows.forEach(r=>{const [c,p,col,f]=r;if(prodN(p)&&col&&!D().EQ.some(x=>x.p===p&&x.n===col)){D().EQ.push({p,n:col,f:f||'Analista',a:true,in:'',dt:HOJE});n++;}});}
@@ -1863,7 +1863,7 @@ dadosIniciais = function(){
   d.HIS=[
    {u:'Priscila Souza',dt:'20/07/2026 14:32',m:'Produtos',c:'Registro Demo 070',r:'Registro Demo 072',campo:'Status do Projeto',de:'Planejamento',para:'Em execução'},
    {u:'Registro Demo 067',dt:'18/07/2026 09:10',m:'Iniciativas',c:'Registro Demo 070',r:'Registro Demo 087',campo:'Elegível Lei do Bem?',de:'Não informado',para:'Sim'},
-   {u:'Amanda Silva',dt:'15/07/2026 16:47',m:'Contratos',c:'Registro Demo 013',r:'Registro Demo 013',campo:'Registro Demo 099',de:'João Pedro',para:'Registro Demo 067'},
+   {u:'Amanda Silva',dt:'15/07/2026 16:47',m:'Contratos',c:'Registro Demo 013',r:'Registro Demo 013',campo:'Gestor Operacional',de:'João Pedro',para:'Registro Demo 067'},
    {u:'Sistema',dt:'12/07/2026 00:05',m:'Iniciativas',c:'Registro Demo 013',r:'Registro Demo 085',campo:'Status da Iniciativa',de:'Em análise',para:'Ativa'},
    {u:'Priscila Souza',dt:'03/07/2026 11:22',m:'Alocações',c:'Registro Demo 070',r:'Registro Demo 076',campo:'% de Alocação',de:'80%',para:'100%'}
   ];
@@ -2037,7 +2037,7 @@ T.home = ()=>{
 T.ctc = ()=>{
   const u=U('ctc'); const todos=ctLista(); let l=todos.slice();
   if(u.c) l=l.filter(c=>c.n===u.c); if(u.reg) l=l.filter(c=>c.reg===u.reg); if(u.st) l=l.filter(c=>c.st===u.st);
-  const cols=[{t:'Contrato',w:150,sort:1,b:1,k:c=>c.n},{t:'ID',w:54,al:'c',sort:1,k:c=>c.id},{t:'Cliente',w:70,al:'c',sort:1,k:c=>c.cli},{t:'Região',w:76,al:'c',sort:1,k:c=>c.reg},{t:'Tipo de Contrato',w:98,al:'c',sort:1,k:c=>c.tipo},{t:'Registro Demo 099',w:90,al:'c',sort:1,k:c=>c.ges},{t:'Produtos',w:48,al:'c'},{t:'Equipes',w:46,al:'c'},{t:'Colab.',w:44,al:'c'},{t:'Status',w:78,al:'c',sort:1,k:c=>c.st},{t:'',w:52,al:'c'}];
+  const cols=[{t:'Contrato',w:150,sort:1,b:1,k:c=>c.n},{t:'ID',w:54,al:'c',sort:1,k:c=>c.id},{t:'Cliente',w:70,al:'c',sort:1,k:c=>c.cli},{t:'Região',w:76,al:'c',sort:1,k:c=>c.reg},{t:'Tipo de Contrato',w:98,al:'c',sort:1,k:c=>c.tipo},{t:'Gestor Operacional',w:90,al:'c',sort:1,k:c=>c.ges},{t:'Produtos',w:48,al:'c'},{t:'Equipes',w:46,al:'c'},{t:'Colab.',w:44,al:'c'},{t:'Status',w:78,al:'c',sort:1,k:c=>c.st},{t:'',w:52,al:'c'}];
   l=u.sort?ordenar(l,'ctc',cols):l;
   const rows=l.map(c=>({lk:0,go:`data-act="abrir-ct:${c.id}"`,cells:[esc(c.n),esc(c.id),esc(c.cli),esc(c.reg),esc(c.tipo),esc(c.ges),prodsCt(c.n).length,eqsCt(c.n).length,colabsContrato(c.n).length,selo(c.st),
     `<span style="display:inline-flex;gap:2px"><button class="icb" data-act="abrir-ct:${c.id}" title="Visualizar">${I.eye}</button><button class="icb" data-act="editar-ct:${c.id}" title="Editar">${I.pencil}</button></span>`]}));
@@ -2059,7 +2059,7 @@ function wzProjetos(u){return (u.edit?prodsCt(u.orig).map(p=>p.n):[]).concat(u.p
 function wzValida(u,step){
   const f=u.f,d=D();
   if(step===1){
-    if(!f.n.trim()||!f.cli.trim()||!f.id.trim()) return 'Preencha Registro Demo 097, Registro Demo 098 e ID Contrato.';
+    if(!f.n.trim()||!f.cli.trim()||!f.id.trim()) return 'Preencha Nome do Contrato, Nome do Cliente e ID Contrato.';
     if(d.CT.some(c=>c.n.toLowerCase()===f.n.trim().toLowerCase()&&c.id!==u.edit)) return 'Já existe um contrato com este nome.';
     if(d.CT.some(c=>c.id.toLowerCase()===f.id.trim().toLowerCase()&&c.id!==u.edit)) return 'Já existe um contrato com este ID.';
     if((f.ini&&isNaN(dval(f.ini)))||(f.fim&&isNaN(dval(f.fim)))) return 'Data inválida.';
@@ -2075,8 +2075,8 @@ T.ctf = ()=>{
   const f=u.f, st=u.step; let corpo='';
   if(st===1){
     corpo=`<span class="ctit2" style="left:12px;top:9px">Informações Gerais</span>`
-     +FZ('Registro Demo 097 *',tx('ui.ctf.f.n',f.n,'Digite o nome do contrato'),12,28,420)+FZ('Registro Demo 098 *',tx('ui.ctf.f.cli',f.cli,'Digite o nome do cliente'),446,28,220)+FZ('ID Contrato *',tx('ui.ctf.f.id',f.id,'Digite o número do contrato'),680,28,182)
-     +FZ('Região do Contrato',dd('ui.ctf.f.reg',REGIOES,f.reg,'Vitória, Rio de Janeiro, São Paulo'),12,68,270)+FZ('Tipo de contrato',dd('ui.ctf.f.tipo',TIPOS_CT,f.tipo,'Setor público, Serviços financeiros, Serviços privado'),296,68,270)+FZ('Registro Demo 099',tx('ui.ctf.f.ges',f.ges,'Nome do gestor'),580,68,282)
+     +FZ('Nome do Contrato *',tx('ui.ctf.f.n',f.n,'Digite o nome do contrato'),12,28,420)+FZ('Nome do Cliente *',tx('ui.ctf.f.cli',f.cli,'Digite o nome do cliente'),446,28,220)+FZ('ID Contrato *',tx('ui.ctf.f.id',f.id,'Digite o número do contrato'),680,28,182)
+     +FZ('Região do Contrato',dd('ui.ctf.f.reg',REGIOES,f.reg,'Vitória, Rio de Janeiro, São Paulo'),12,68,270)+FZ('Tipo de contrato',dd('ui.ctf.f.tipo',TIPOS_CT,f.tipo,'Setor público, Serviços financeiros, Serviços privado'),296,68,270)+FZ('Gestor Operacional',tx('ui.ctf.f.ges',f.ges,'Nome do gestor'),580,68,282)
      +FZ('Data de Início',dataF('ui.ctf.f.ini',f.ini,'dd/mm/aaaa'),12,108,130)+FZ('Data de Fim',dataF('ui.ctf.f.fim',f.fim,'dd/mm/aaaa'),156,108,130)+FZ('Status',dd('ui.ctf.f.st',['Ativo','Inativo'],f.st,null),300,108,130)
      +`<div style="position:absolute;left:12px;right:16px;top:150px;height:1px;background:#e2e2e2"></div><span class="ctit2" style="left:12px;top:158px">Anexos do Contrato</span>
       <label class="dz" style="position:absolute;left:12px;right:16px;top:176px;height:38px">Arraste arquivos aqui ou clique para selecionar<input type="file" multiple data-up="ct-anexo"></label>
@@ -2167,8 +2167,8 @@ T.ctd = ()=>{
   let corpo='';
   if(u.tab==='geral'){
     const box=(t,v,x)=>`<div style="position:absolute;left:${x}px;top:110px;width:158px;height:40px;background:#F6F6F6;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.08)"><div style="font-size:15px;font-weight:700;color:#201547;margin:4px 0 0 10px">${v}</div><div style="font-size:7.6px;color:#555;margin-left:10px">${t}</div></div>`;
-    corpo=KV('Registro Demo 097',c.n,16,12,260)+KV('Número do Contrato',c.id,290,12)+KV('Registro Demo 098',c.cli,500,12)+KV('Região do Contrato',c.reg,700,12,160)
-     +KV('Tipo de Contrato',c.tipo,16,48,260)+KV('Registro Demo 099',c.ges,290,48)+KV('Data de Início',c.ini,500,48)+KV('Data de Fim',c.fim,700,48,160)
+    corpo=KV('Nome do Contrato',c.n,16,12,260)+KV('Número do Contrato',c.id,290,12)+KV('Nome do Cliente',c.cli,500,12)+KV('Região do Contrato',c.reg,700,12,160)
+     +KV('Tipo de Contrato',c.tipo,16,48,260)+KV('Gestor Operacional',c.ges,290,48)+KV('Data de Início',c.ini,500,48)+KV('Data de Fim',c.fim,700,48,160)
      +`<div class="kv" style="left:16px;top:80px"><div class="k">Status</div><div class="v">${selo(c.st)}</div></div>`+KV('Anexos do Contrato',(c.anexos||[]).length+' arquivo(s)',290,80)
      +box('Projetos',ps.length,16)+box('Equipes',es.length,186)+box('Colaboradores (únicos, regra 6)',cs.length,356)+box('Tecnologias',ts.length,526)+box('Iniciativas vinculadas',is.length,696)
      +`<div class="kv" style="left:16px;top:162px;width:840px"><div class="k">Tecnologias utilizadas</div><div class="v">${minis(ts.map(t=>t.n))||'<span style="color:#999">Nenhuma</span>'}</div></div>
@@ -2238,7 +2238,7 @@ T.pf = ()=>{
   let corpo='';
   const R=(lb,h,mt)=>`<div class="row" style="margin-top:${mt==null?9:mt}px"><div class="lb">${lb}</div>${h}</div>`;
   if(u.step==='ig'){
-    corpo=R('Registro Demo 096 ou Serviço *',`<div style="width:584px">${tx('ui.pf.f.n',f.n,'Sigla ou Registro Demo 096/Serviço (não pode conter caracter especial, como virgula)')}</div>`,14)
+    corpo=R('Nome do Produto ou Serviço *',`<div style="width:584px">${tx('ui.pf.f.n',f.n,'Sigla ou Nome do Produto/Serviço (não pode conter caracter especial, como virgula)')}</div>`,14)
      +R('Contrato *',`<div style="width:279px">${dd('ui.pf.f.c',contratosVis(),f.c)}</div>`)
      +R('Identificador',`<div style="width:160px">${tx('ui.pf.f.ident',f.ident,'Ex.: I-4966')}</div>`)
      +R('Scrum Master',`<div style="width:279px">${dd('ui.pf.f.sm',smOpcoes(f.c),f.sm,'')}</div><span class="tt-lb">Responsável pelo projeto (regra 14)</span>`)
@@ -2267,7 +2267,7 @@ T.pf = ()=>{
     tabs+lote+`<div class="card" style="top:30px;bottom:32px;overflow:hidden">${est}<div class="frm scr" style="position:absolute;top:30px;left:0;right:0;bottom:0;overflow-y:auto;padding-bottom:10px">${corpo}</div></div>
     <div style="position:absolute;left:2px;bottom:7px;display:flex;gap:11px">${btn}<button class="b cont" style="width:69px;height:18px" data-act="cancelar-prod">Cancelar</button></div>`);
 };
-const CAMPOS_PROD={n:'Registro Demo 096',c:'Contrato',st:'Status do Projeto',ini:'Data de Início',fim:'Data de Conclusão',cat:'Categoria',ident:'Identificador',sm:'Scrum Master',tipoInov:'Tipo de Inovação',deleg:'Preenchimento'};
+const CAMPOS_PROD={n:'Nome do Produto',c:'Contrato',st:'Status do Projeto',ini:'Data de Início',fim:'Data de Conclusão',cat:'Categoria',ident:'Identificador',sm:'Scrum Master',tipoInov:'Tipo de Inovação',deleg:'Preenchimento'};
 const _salvarProd=A['salvar-prod'];
 A['salvar-prod']=()=>{
   const u=U('pf'); const id=u.id; const old=id?clone(prod(id)):null; const f=clone(u.f);
@@ -2301,7 +2301,7 @@ T.pd = ()=>{
     const est=`<div class="est">${subs.map(s=>`<div class="s ${s[0]===u[sk]?'on':''}" data-act="sub:${sk}:${s[0]}">${s[1]}</div>`).join('')}${!master()?'<div class="s vazio" style="flex:4;background:#fff"></div>':''}</div>`;
     const R=(lb,v,mt)=>`<div class="row" ${mt?`style="margin-top:${mt}px"`:''}><div class="lb" style="width:131px">${lb}</div><div class="vv" style="padding-left:12px">${esc(v)}</div></div>`;
     const s=u[sk]; let c='';
-    if(s==='ig') c=R('Registro Demo 096 *',p.n,8)+R('Contrato *',p.c)+R('Identificador',p.ident||'')+R('Scrum Master',p.sm||'')+R('Preenchimento',p.deleg||'Gerente')+R('Status *',p.st)+R('Data Início *',p.ini)+R('Data Conclusão *',p.fim)+R('Categoria *',p.cat)+R('Tipo de Inovação',p.tipoInov||'')+R('Subproduto',p.sub)+R('Link Documentação',p.lk);
+    if(s==='ig') c=R('Nome do Produto *',p.n,8)+R('Contrato *',p.c)+R('Identificador',p.ident||'')+R('Scrum Master',p.sm||'')+R('Preenchimento',p.deleg||'Gerente')+R('Status *',p.st)+R('Data Início *',p.ini)+R('Data Conclusão *',p.fim)+R('Categoria *',p.cat)+R('Tipo de Inovação',p.tipoInov||'')+R('Subproduto',p.sub)+R('Link Documentação',p.lk);
     else if(s==='det') c=`<div class="row" style="margin-top:14px;align-items:flex-start;min-height:110px"><div class="lb" style="width:131px">Descrição</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.4">${esc(p.d)}</div></div>`+R('TRL Atual',p.trlA)+R('TRL Previsto',p.trlP);
     else if(s==='sol') c=`<div class="row" style="margin-top:14px;align-items:flex-start"><div class="lb" style="width:131px">Solução Registro Demo 002</div><div class="vv" style="padding-left:12px;width:640px;line-height:1.45">${esc(p.sol)}</div></div>`;
     else {const arr=p[s],dt=p[s+'D']||'';c=arr.map((v,i)=>`<div class="row" style="margin-top:${i?0:10}px;min-height:27px"><div class="lb" style="width:131px">Opção ${i+1}</div><div class="vv" style="padding-left:12px">${esc(v)}</div></div>`).join('')+`<div class="row" style="margin-top:30px"><div class="lb" style="width:131px;font-weight:500">Detalhamento</div><div class="vv" style="padding-left:12px">${esc(dt)}</div></div>`;}
@@ -2653,7 +2653,7 @@ Object.assign(A,{
    for(const s of [1,2,3]){const e=wzValida(u,s);if(e){u.step=s;toast(e,'err');render();return;}}
    let c;
    if(u.edit){c=ctId(u.edit);const novo={n:f.n.trim(),cli:f.cli.trim(),id:f.id.trim(),reg:f.reg,tipo:f.tipo,ges:f.ges,ini:f.ini,fim:f.fim,st:f.st};
-     const lab={n:'Registro Demo 097',cli:'Registro Demo 098',id:'ID Contrato',reg:'Região do Contrato',tipo:'Tipo de contrato',ges:'Registro Demo 099',ini:'Data de Início',fim:'Data de Fim',st:'Status'};
+     const lab={n:'Nome do Contrato',cli:'Nome do Cliente',id:'ID Contrato',reg:'Região do Contrato',tipo:'Tipo de contrato',ges:'Gestor Operacional',ini:'Data de Início',fim:'Data de Fim',st:'Status'};
      Object.keys(lab).forEach(k=>hist('Contratos',novo.n,novo.n,lab[k],c[k],novo[k]));
      const old=c.n;Object.assign(c,novo);renomearCt(old,c.n);
      f.anexos.filter(a=>!(c.anexos||[]).includes(a)).forEach(a=>{d.DOCS.unshift({n:a,t:'Anexo do Contrato',v:'Contrato '+c.n,c:c.n,dt:HOJE,r:nomeUser()});hist('Documentação',c.n,a,'Anexo do contrato','','Incluído');});
